@@ -32,7 +32,7 @@ Dependencies: python (numpy, scipy, matplotlib)
 
 #### Gallery
 
-Illustration of the directions in $b_\phi - b_1$ that give the best improvements in multi-tracer analyses.
+Illustration of the directions in $b_\phi - b_1$ plane that give the best improvements in multi-tracer analyses.
 
 <img src="fig_store/fig_paper_fisher_fNL_analysis_circle_opposite.png" width="1000" height=auto/>
 
