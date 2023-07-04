@@ -22,3 +22,13 @@ The galaxy data, in the form of the galaxy bias parameters $b_1$ and $b_\phi$, c
 - *plot_paper_fisher_analysis_circle_opposite.py* executes a simple example-analysis to identify which directions in $b_\phi - b_1$ plane give the best $f_{\rm NL}$ improvements in multi-tracer analyses.
 
 - *plot_paper_fisher_sod_analysis_simulations.py*  executes a significance of detection analyses to identify which types of multi-tracer splits in the IllustrisTNG model are optimal for $f_{\rm NL}$ measurements.
+
+#### Gallery
+
+
+
+<img src="fig_store/fig_paper_fisher_fNL_analysis_circle_opposite.png" width="600" height=auto/>
+
+
+<img src="fig_store/fig_paper_fisher_sod_analysis_simulations.png" width="600" height=auto/>
+
