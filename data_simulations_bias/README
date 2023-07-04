@@ -1,0 +1,19 @@
+
+	These galaxy bias data were generated elsewhere using Separate Universe IllustrisTNG simulation data
+
+	The data are for the bias parameters $b_1$ and $b_\phi$ for 
+
+		- redshifts       , z = 0, 0.5, 1, 2, 3              ,
+		- number densities, n_g = 5e-4, 2e-4, 1e-4 h^3/Mpc^3 ,
+
+	as well as for the full sample and equal-number multi-tracer splits according to
+
+		- g-r color (grcolor)
+		- stelar mass (stemass)
+		- total mass (totmass)
+		- black hole mass accretion rate (bhmmdot)
+		- galaxy local density (ngalax8)
+		- halo concentration (c200)
+
+
+	Consult Barreira & Krause (2023) for more details (https://arxiv.org/abs/2302.09066)

@@ -1,29 +1,33 @@
-from commons_fNL import *
+from commons import *
 
 ## ======================================================================
 ## Compute sigma_fNL on a circle bphi-b1 for multi tracer study
 ## ======================================================================
 
+# Choose desired number densities here
 ng_F1   = 2.0e-04 # h^3/Mpc^3
 ng_F2   = 2.0e-00 # h^3/Mpc^3
+label_mt1  = r'$\bar{n}_g = 2 \times 10^{-4}$\ ; $\bar{n}_g^A,\bar{n}_g^B=\bar{n}_g/2$'
+label_mt2  = r'$\bar{n}_g = 2$\ ; $\bar{n}_g^A,\bar{n}_g^B=\bar{n}_g/2$'
 
+# Choose desired bias parameters of the full sample
 b1_F   = 2.
 bphi_F = 2.*dc*(b1_F - 1.)
 
+# Choose desired number density of the two subsamples
 ng_A1 = ng_F1/2.
 ng_B1 = ng_F1/2.
 ng_A2 = ng_F2/2.
 ng_B2 = ng_F2/2.
 
+# Choose details of the circle of multi-tracer splits
 Nttheta = 50
 ttheta = linspace(-pi/2., pi/2., Nttheta)
 Radius = 1.
 
+# Compute the multi-tracer Fisher matrix constraints
 sigma_fNL1_mt = zeros(Nttheta)
 sigma_fNL2_mt = zeros(Nttheta)
-
-print ('')
-print ('Doing multi tracer part of the study ... Ntheta = ', Nttheta)
 bb1_A   = zeros(Nttheta)
 bbphi_A = zeros(Nttheta)
 bb1_B   = zeros(Nttheta)
@@ -50,6 +54,7 @@ for i1 in range(Nttheta):
     bb1_B[i1]        = b1_B
     bbphi_B[i1]      = bphi_B
 
+# Compute the single-tracer Fisher matrix constraints
 Finfo1_now = zeros(len(kk))
 Finfo2_now = zeros(len(kk))
 for i3 in range(len(kk)):
@@ -72,9 +77,6 @@ title_font  = 30
 text_font   = 20
 legend_font = 20
 alpha_c     = 0.4
-
-label_mt1      = r'$\bar{n}_g = 2 \times 10^{-4}$\ ; $\bar{n}_g^A,\bar{n}_g^B=\bar{n}_g/2$'
-label_mt2      = r'$\bar{n}_g = 2$\ ; $\bar{n}_g^A,\bar{n}_g^B=\bar{n}_g/2$'
 
 m_def = 'o'
 s_def = 6
@@ -106,7 +108,7 @@ annotate(r'The $A,B$ pairs are opposed in the circle'   , xy = (0.01,0.05), xyco
 annotate(r'Universality', xy = (0.640, 0.89), xycoords='axes fraction', color = 'grey', fontsize = text_font, rotation = 0.)
 tick_params(length=ticklength_major, width=tickwidth , bottom=True, top=True, left=True, right=True, direction = 'in', which = 'major', pad = tickpad, labelsize = ticksize)
 
-# Another number density
+# The other number density
 panel = fig1.add_subplot(1,2,1)
 title(label_mt2, fontsize= title_font)
 panel.set_aspect('equal')

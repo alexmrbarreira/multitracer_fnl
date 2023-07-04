@@ -1,22 +1,26 @@
-from commons_fNL import *
+from commons import *
 
 ## =========================================================================
 ## Some functions and parameters 
 ## ========================================================================= 
 
+# List of redshifts that can be selected
 list_redshift_strings   = ['z00', 'z05', 'z10', 'z20', 'z30']
 list_redshift_values    = [0.0, 0.5, 1.0, 2.0, 3.0]
 annotate_list_redshifts = [r"$z = 0$", r"$z = 0.5$", r"$z = 1$", r"$z = 2$", r"$z = 3$"]
 
-z_index  = 2
-ng_index = 1
-
+# List of number densities that can be selected
 ng_targets = [5.0e-4, 2.0e-4, 1.0e-4] # h^3/Mpc^3
 ng_strings = ['nbar_5.0e-4', 'nbar_2.0e-4', 'nbar_1.0e-4']
 ng_labels  = [r'$\bar{n}_g = 5\times 10^{-4}$', r'$\bar{n}_g = 2\times 10^{-4}$', r'$\bar{n}_g = 1\times 10^{-4}$']
 
-pathtosimdata = 'data_store/' 
+# Select here the desired redshift and number density (index of the above lists)
+z_index  = 2
+ng_index = 1
 
+pathtosimdata = 'data_simulations_bias/' 
+
+# Function that loads bias parameters for galaxies in IllustrisTNG
 def load_bphib1_v1(zind, nind, split_type):
     b1_val_high = load(pathtosimdata+'data_b1/'+list_redshift_strings[zind]+'/data_b1_val_tng300_2_hydro_totmass_' + list_redshift_strings[zind] + '_' + ng_strings[nind] + '_high_'+split_type+'.npy')
     b1_err_high = load(pathtosimdata+'data_b1/'+list_redshift_strings[zind]+'/data_b1_err_tng300_2_hydro_totmass_' + list_redshift_strings[zind] + '_' + ng_strings[nind] + '_high_'+split_type+'.npy')
@@ -28,6 +32,7 @@ def load_bphib1_v1(zind, nind, split_type):
     bphi_err_loww = load(pathtosimdata+'data_bphi/'+list_redshift_strings[zind]+'/data_bphi_err_tng300_2_hydro_totmass_' + list_redshift_strings[zind] + '_' + ng_strings[nind] + '_loww_'+split_type+'.npy')
     return b1_val_high, b1_err_high, b1_val_loww, b1_err_loww, bphi_val_high, bphi_err_high, bphi_val_loww, bphi_err_loww
 
+# Function that loads bias parameters for halos in a gravity-only simulation
 def load_bphib1_v2(zind, nind, split_type):
     b1_val_high = load(pathtosimdata+'data_b1/'+list_redshift_strings[zind]+'/data_b1_val_tng800_2_dmo_M200_' + list_redshift_strings[zind] + '_' + ng_strings[nind] + '_high_'+split_type+'.npy')
     b1_err_high = load(pathtosimdata+'data_b1/'+list_redshift_strings[zind]+'/data_b1_err_tng800_2_dmo_M200_' + list_redshift_strings[zind] + '_' + ng_strings[nind] + '_high_'+split_type+'.npy')
@@ -39,6 +44,7 @@ def load_bphib1_v2(zind, nind, split_type):
     bphi_err_loww = load(pathtosimdata+'data_bphi/'+list_redshift_strings[zind]+'/data_bphi_err_tng800_2_dmo_M200_' + list_redshift_strings[zind] + '_' + ng_strings[nind] + '_loww_'+split_type+'.npy')
     return b1_val_high, b1_err_high, b1_val_loww, b1_err_loww, bphi_val_high, bphi_err_high, bphi_val_loww, bphi_err_loww
 
+# Function that computes the significance-of-detection for single-tracer
 def compute_sod_st(b1, bphi, ng):
     Finfo = zeros(len(kk))
     for i in range(len(kk)):
@@ -47,12 +53,12 @@ def compute_sod_st(b1, bphi, ng):
     sod_fNLbphi   = fNL*bphi/sigma_fNLbphi
     return sod_fNLbphi
 
+# Function that computes the significance-of-detection for multi-tracer
 def compute_sod_mt(b1_A, b1_B, bphi_A, bphi_B, ng_A, ng_B):
     Finfo_AA = zeros(len(kk))
     Finfo_AB = zeros(len(kk))
     Finfo_BB = zeros(len(kk))
     for i in range(len(kk)):
-
         Finfo_AA[i] = dot(model_derivative_multitracer_wrt_fNLbphiA(z, kk[i], fNL, b1_A, b1_B, bphi_A, bphi_B),
                       dot(linalg.inv(covariance_multitracer(z, kk[i], fNL, b1_A, b1_B, bphi_A, bphi_B, ng_A, ng_B, Vs, DDk[i])),
                           model_derivative_multitracer_wrt_fNLbphiA(z, kk[i], fNL, b1_A, b1_B, bphi_A, bphi_B)))
@@ -197,10 +203,11 @@ label_totmass = r'$M_{\rm t}$'
 label_c200    = r'$c_{200}$'+'\n'+'(halos)'
 
 fig1 = plt.figure(1, figsize=(17., 6.))
-fig1.subplots_adjust(left=0.09, right=0.98, top=0.97, bottom=0.20, wspace = 0.33, hspace = 0.30)
+fig1.subplots_adjust(left=0.09, right=0.98, top=0.92, bottom=0.20, wspace = 0.33, hspace = 0.30)
 
 # Plot bphi(b1)
 panel = fig1.add_subplot(1,2,1)
+title('Galaxy bias from multi-tracer splits', fontsize = title_font)
 # grcolor
 errorbar(b1_galaxy_val_grcolorA, bphi_galaxy_val_grcolorA, xerr=b1_galaxy_err_grcolorA, yerr=bphi_galaxy_err_grcolorA, linewidth=ln_def, linestyle=ls_def, c = c_grcolor, marker=m_A, markersize=s_def)
 errorbar(b1_galaxy_val_grcolorB, bphi_galaxy_val_grcolorB, xerr=b1_galaxy_err_grcolorB, yerr=bphi_galaxy_err_grcolorB, linewidth=ln_def, linestyle=ls_def, c = c_grcolor, marker=m_B, markersize=s_def)
@@ -226,7 +233,8 @@ errorbar(b1_halo_val_c200A, bphi_halo_val_c200A, xerr=b1_halo_err_c200A, yerr=bp
 errorbar(b1_halo_val_c200B, bphi_halo_val_c200B, xerr=b1_halo_err_c200B, yerr=bphi_halo_err_c200B, linewidth=ln_def, linestyle=ls_def, c = c_c200, marker=m_B, markersize=s_def)
 plot([b1_halo_val_c200A, b1_halo_val_c200B], [bphi_halo_val_c200A, bphi_halo_val_c200B], linewidth=ln_def, linestyle=ls_def, c = c_c200, label = label_c200)
 # Cosmetics
-annotate(annotate_list_redshifts[z_index], xy = (0.05,0.85), xycoords='axes fraction', color = 'k', fontsize = text_font)
+annotate(annotate_list_redshifts[z_index]         , xy = (0.02,0.85), xycoords='axes fraction', color = 'k', fontsize = text_font-6)
+annotate(ng_labels[ng_index]+r'$h^3/{\rm Mpc}^3$' , xy = (0.02,0.75), xycoords='axes fraction', color = 'k', fontsize = text_font-10)
 #plot(bb1, 2.*dc*(bb1 - 1.), linestyle = 'dashed', linewidth = 2., c = 'grey')
 #annotate(r'Universality', xy = (0.15, 0.07), xycoords='axes fraction', color = 'grey', fontsize = text_font-2, rotation = 0.)
 locator_params(axis='x', nbins=6)
@@ -238,6 +246,7 @@ params = {'legend.fontsize': legend_font}; pylab.rcParams.update(params); legend
 
 # Plot sigma_fNL
 panel = fig1.add_subplot(1,2,2)
+title(r'Improvements to detect $f_{\rm NL} \neq 0$', fontsize = title_font)
 # Add data to plot
 ratio_sigma_fNL = [sigma_fNL_galaxy_grcolor/sigma_fNL_galaxy, 
                    sigma_fNL_galaxy_stemass/sigma_fNL_galaxy, 
