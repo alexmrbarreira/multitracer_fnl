@@ -6,7 +6,7 @@ This code does part of the numerical analyses in the paper:
 
 In particular, it computes the improvements in observational constraints of the local primordial non-Gaussianity parameter $f_{\rm NL}$ using galaxy multi-tracer analyses. It is useful to identify which types of galaxy selection cuts yield optimal measurements of $f_{\rm NL}$.
 
-#### The galaxy bias data
+### The galaxy bias data
 
 The galaxy data, in the form of the galaxy bias parameters $b_1$ and $b_\phi$, comes from separate universe simulations of the IllustrisTNG galaxy formation model. These data is available in the folder *data_simulations_bias* for:
 
@@ -20,7 +20,7 @@ The galaxy data, in the form of the galaxy bias parameters $b_1$ and $b_\phi$, c
   - black hole accretion rate, $\dot{M}_{\rm BH}$
   - halo concentration, $c_{200}$
 
-#### Code overview
+### Code overview
 
 Dependencies: python (numpy, scipy, matplotlib)
 
@@ -30,7 +30,7 @@ Dependencies: python (numpy, scipy, matplotlib)
 
 - *plot_paper_fisher_sod_analysis_simulations.py*  executes a significance of detection analyses to identify which types of multi-tracer splits in the IllustrisTNG model are optimal for $f_{\rm NL}$ measurements.
 
-#### Gallery
+### Gallery
 
 Illustration of the directions in $b_\phi - b_1$ plane that give the best improvements in multi-tracer analyses.
 
