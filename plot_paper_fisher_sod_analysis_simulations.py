@@ -97,27 +97,14 @@ def print_bias_mt(b1_A, b1_B, bphi_A, bphi_B, split_type):
     return 0
 
 ## =========================================================================
-## Load bias parameters  and compute their sigma_fNL
+## Load bias parameters and compute their sigma_fNL
 ## ========================================================================= 
-
-print ('')
-print ('Results for')
-print ('z = ', annotate_list_redshifts[z_index])
-print ('ng = ', ng_labels[ng_index] + r'$\left[h^3/{\rm Mpc^3}\right]$')
-print ('')
 
 ng_st = ng_targets[ng_index]
 ng_A   = ng_st/2.
 ng_B   = ng_st/2.
 
-bb1 = linspace(0., 8., 100)
-
-xmin = 1.0
-xmax = 3.9
-ymin = -4.
-ymax = 15.
-
-# Full sample of galaxies (same so use any)
+# Full sample of galaxies
 b1_galaxy_val   = load(pathtosimdata+'data_b1/'+list_redshift_strings[z_index]+'/data_b1_val_tng300_2_hydro_totmass_'   + list_redshift_strings[z_index] + '_' + ng_strings[ng_index] + '.npy')
 b1_galaxy_err   = load(pathtosimdata+'data_b1/'+list_redshift_strings[z_index]+'/data_b1_err_tng300_2_hydro_totmass_'   + list_redshift_strings[z_index] + '_' + ng_strings[ng_index] + '.npy')
 bphi_galaxy_val = load(pathtosimdata+'data_bphi/'+list_redshift_strings[z_index]+'/data_bphi_val_tng300_2_hydro_totmass_' + list_redshift_strings[z_index] + '_' + ng_strings[ng_index] + '.npy')
@@ -150,7 +137,7 @@ b1_galaxy_val_totmassA, b1_galaxy_err_totmassA, b1_galaxy_val_totmassB, b1_galax
 print_bias_mt(b1_galaxy_val_totmassA, b1_galaxy_val_totmassB, bphi_galaxy_val_totmassA, bphi_galaxy_val_totmassB, 'galaxies split by totmass')
 sigma_fNL_galaxy_totmass = compute_sod_mt(b1_galaxy_val_totmassA, b1_galaxy_val_totmassB, bphi_galaxy_val_totmassA, bphi_galaxy_val_totmassB, ng_A, ng_B)
 
-# Full sample of halos (same so use any)
+# Full sample of halos
 b1_halo_val   = load(pathtosimdata+'data_b1/'+list_redshift_strings[z_index]+'/data_b1_val_tng800_2_dmo_M200_'   + list_redshift_strings[z_index] + '_' + ng_strings[ng_index] + '.npy')
 b1_halo_err   = load(pathtosimdata+'data_b1/'+list_redshift_strings[z_index]+'/data_b1_err_tng800_2_dmo_M200_'   + list_redshift_strings[z_index] + '_' + ng_strings[ng_index] + '.npy')
 bphi_halo_val = load(pathtosimdata+'data_bphi/'+list_redshift_strings[z_index]+'/data_bphi_val_tng800_2_dmo_M200_' + list_redshift_strings[z_index] + '_' + ng_strings[ng_index] + '.npy')
@@ -235,6 +222,7 @@ plot([b1_halo_val_c200A, b1_halo_val_c200B], [bphi_halo_val_c200A, bphi_halo_val
 # Cosmetics
 annotate(annotate_list_redshifts[z_index]         , xy = (0.02,0.85), xycoords='axes fraction', color = 'k', fontsize = text_font-6)
 annotate(ng_labels[ng_index]+r'$h^3/{\rm Mpc}^3$' , xy = (0.02,0.75), xycoords='axes fraction', color = 'k', fontsize = text_font-10)
+#bb1 = linspace(0., 8., 100)
 #plot(bb1, 2.*dc*(bb1 - 1.), linestyle = 'dashed', linewidth = 2., c = 'grey')
 #annotate(r'Universality', xy = (0.15, 0.07), xycoords='axes fraction', color = 'grey', fontsize = text_font-2, rotation = 0.)
 locator_params(axis='x', nbins=6)
@@ -244,7 +232,7 @@ xlabel(r'$b_1$'  , fontsize = labelsize)
 ylabel(r'$b_{\phi}$', fontsize = labelsize-2)
 params = {'legend.fontsize': legend_font}; pylab.rcParams.update(params); legend(loc = 'lower right', ncol = 1)
 
-# Plot sigma_fNL
+# Plot signal-to-noise ratios multi-tracer/single-tracer
 panel = fig1.add_subplot(1,2,2)
 title(r'Improvements to detect $f_{\rm NL} \neq 0$', fontsize = title_font)
 # Add data to plot
@@ -277,6 +265,13 @@ annotate(r'$ = %.1f$ ' % (b1_galaxy_val_totmassB*bphi_galaxy_val_totmassA - b1_g
 
 
 fig1.savefig('fig_store/fig_paper_fisher_sod_analysis_simulations.png')
+
+print ('')
+print ('Results for')
+print ('z = ', list_redshift_values[z_index])
+print ('ng = ', ng_targets[ng_index])
+print ('')
+
 
 #show()
 
