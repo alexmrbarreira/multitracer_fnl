@@ -9,4 +9,4 @@ In particular, it computes the improvements in observational constraints of the 
 The galaxy data, in the form of galaxy bias parameters, comes from Separate Universe simulations of the IllustrisTNG galaxy formation model. These data is available in the folder *data_simulations_bias* for:
 
 - Redshifts, $z = 0, 0.5, 1, 2, 3$
-- Number densities, $\bar{n}_g = {1, 2, 5} \times 10^{-4}\ h^3/{\rm Mpc^3}$
+- Number densities, $\bar{n}_g = [1, 2, 5] \times 10^{-4}\ h^3/{\rm Mpc^3}$
