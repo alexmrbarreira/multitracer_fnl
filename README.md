@@ -27,8 +27,8 @@ The galaxy data, in the form of the galaxy bias parameters $b_1$ and $b_\phi$, c
 
 
 
-<img src="fig_store/fig_paper_fisher_fNL_analysis_circle_opposite.png" width="600" height=auto/>
+<img src="fig_store/fig_paper_fisher_fNL_analysis_circle_opposite.png" width="1000" height=auto/>
 
 
-<img src="fig_store/fig_paper_fisher_sod_analysis_simulations.png" width="600" height=auto/>
+<img src="fig_store/fig_paper_fisher_sod_analysis_simulations.png" width="1000" height=auto/>
 
