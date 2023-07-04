@@ -13,7 +13,10 @@ The galaxy data, in the form of the galaxy bias parameters $b_1$ and $b_\phi$, c
 
 #### Dependencies
 
-python (numpy, scipy, matplotlib)
+- python (numpy, scipy, matplotlib)
 
 #### Code overview
 
+- *commons.py* defines global parameter and functions. It is imported by the other scripts
+  
+- *plot_paper_fisher_analysis_circle_opposite.py* executes a simple example-analysis to identify which directions in $b_\phi - b_1$ plane give the best improvements in $f_{\rm NL}$ in multi-tracer analyses.
