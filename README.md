@@ -25,10 +25,11 @@ The galaxy data, in the form of the galaxy bias parameters $b_1$ and $b_\phi$, c
 
 #### Gallery
 
-
+Illustration of the directions in $b_\phi - b_1$ that give the best improvements in multi-tracer analyses. The answer: multi-tracer splits in which the $b_\phi$ and $b_1$ values vary inversely proportional to each other.
 
 <img src="fig_store/fig_paper_fisher_fNL_analysis_circle_opposite.png" width="1000" height=auto/>
 
+Illustration of the improvements to detect $f_{\rm NL}b_\phi \neq 0$ from different multi-tracer splits in IllustrisTNG.
 
 <img src="fig_store/fig_paper_fisher_sod_analysis_simulations.png" width="1000" height=auto/>
 
