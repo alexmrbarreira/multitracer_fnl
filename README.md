@@ -12,6 +12,7 @@ The galaxy data, in the form of the galaxy bias parameters $b_1$ and $b_\phi$, c
 
 - Redshifts, $z = 0, 0.5, 1, 2, 3$
 - Number densities, $\bar{n}_g = (1, 2, 5) \times 10^{-4}\ h^3/{\rm Mpc^3}$
+- Equal number splits of the full samples according to: color $g-r$, stellar mass $M_*$, total mass $M_t$, environmental galaxy density $n_{g,8}$, black hole accretion rate $\dot{M}_{\rm BH}$, halo concentration $c_{200}$.
 
 #### Code overview
 
