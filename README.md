@@ -29,7 +29,7 @@ Illustration of the directions in $b_\phi - b_1$ that give the best improvements
 
 <img src="fig_store/fig_paper_fisher_fNL_analysis_circle_opposite.png" width="1000" height=auto/>
 
-Illustration of the improvements to detect $f_{\rm NL}b_\phi \neq 0$ from different multi-tracer (MT) splits in IllustrisTNG, relative to single-tracer (ST) analyses.
+Illustration of the improvements to detect $f_{\rm NL}b_\phi \neq 0$ from different multi-tracer (MT) splits in IllustrisTNG, relative to single-tracer (ST).
 
 <img src="fig_store/fig_paper_fisher_sod_analysis_simulations.png" width="1000" height=auto/>
 
